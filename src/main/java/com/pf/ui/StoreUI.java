@@ -1,6 +1,7 @@
 package com.pf.ui;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import com.pf.constants.DataConstants;
@@ -10,6 +11,7 @@ import com.pf.service.CartService;
 import com.pf.service.CheckoutService;
 import com.pf.service.impl.CartServiceImpl;
 import com.pf.service.impl.CheckoutServiceImpl;
+import com.pf.utils.CurrencyUtils;
 
 public class StoreUI {
 	
@@ -167,7 +169,13 @@ public class StoreUI {
 	
 	public void checkoutCart() {
 		List<Cart> carts = cartService.getFinalProductsInCart();
-		checkoutService.calculatePrice(carts);
+		float totalAmount = checkoutService.calculatePrice(carts);
+		Locale enGBLocale = new Locale.Builder().setLanguage("en").setRegion("GB").build();
+		
+		String amountDisplay = CurrencyUtils.getCurrencyDisplay(enGBLocale, totalAmount);
+		
+		System.err.println("############ Total Paid today = "+amountDisplay+"  #################. Thank you see you soon #########");
+		System.exit(0);
 	}
 	
 	private int getUserInput() throws NumberFormatException {

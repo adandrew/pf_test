@@ -14,14 +14,17 @@ public class CheckoutServiceImpl implements CheckoutService{
 	DiscountService discountService = new DiscountServiceImpl();
 	
 	@Override
-	public void calculatePrice(List<Cart> updatedProducts) {
+	public float calculatePrice(List<Cart> updatedProducts) {
+		
+		float totalAmount = 0.0f;
 		
 		for(ProductDescription product:products) {
 			for(Cart cart:updatedProducts) {
 				if(cart.getProductCode().equals(product.getProductId())) {
-					
+					totalAmount += discountService.freeOffer(product, cart);
 				}
 			}
 		}
+		return totalAmount;
 	}
 }

@@ -6,6 +6,6 @@ import com.pf.domain.Cart;
 
 public interface CheckoutService {
 	
-	public void calculatePrice(List<Cart> updatedProducts);
+	public float calculatePrice(List<Cart> updatedProducts);
 
 }
