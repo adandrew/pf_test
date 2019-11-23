@@ -1,7 +1,12 @@
 package com.pf.constants;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.pf.domain.ProductDescription;
+import com.pf.domain.Rule;
 
 public class DataConstants {
 	
@@ -20,6 +25,20 @@ public class DataConstants {
 		productPriceMap.put(2, .25f);
 		
 		return productPriceMap;
+	}
+	
+	public static List<ProductDescription> buildStoreProducts() {
+		List<ProductDescription> products = new ArrayList<ProductDescription>();
+		String [] productIds = {"0001","0002"};
+		String [] productNames = {"Apples","Oranges"};
+		float [] productPrices = {0.60f,0.25f};
+		Rule [] rules = {new Rule(1,1,1), new Rule(2,2,1)};
+		
+		for(int i=0;i<productIds.length;i++) {
+			products.add(new ProductDescription(productIds[i], productNames[i], productPrices[i],rules[i]));
+		}
+		
+		return products;
 	}
 
 }
