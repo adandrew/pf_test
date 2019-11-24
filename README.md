@@ -13,10 +13,10 @@ Download the source code from https://github.com/adandrew/pf_test. Alternatively
 Change to the cloned or the directory the pom.xml exists
 
 Run mvn clean install
-A jar named store-app.jar is created in the <CURRENT_DIRECTORY>/target
+A jar named store-app.jar & store-app-jar-with-dependencies are created in the <CURRENT_DIRECTORY>/target
 
 cd to <CURRENT_DIRECTORY>/target
 
-Execute the command : java -jar store-app.jar
+Execute the command : java -jar store-app-jar-with-dependencies
 
 Follow the prompts
