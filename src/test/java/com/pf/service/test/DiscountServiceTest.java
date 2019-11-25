@@ -17,8 +17,8 @@ public class DiscountServiceTest {
 		
 		DiscountService discountService = new DiscountServiceImpl();
 		
-		Rule rule1 = new Rule(1,1,1);
-		Rule rule2 = new Rule(2,2,1);
+		Rule rule1 = new Rule(1,1,1,"Buy 1 get 1 free");
+		Rule rule2 = new Rule(2,2,1,"Buy 3 for the price of 2");
 		
 		ProductDescription product1 = new ProductDescription("0001", "Apples", 0.60f, rule1);
 		ProductDescription product2 = new ProductDescription("0002", "Oranges", 0.25f, rule2);

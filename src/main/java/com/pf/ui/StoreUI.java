@@ -73,9 +73,9 @@ public class StoreUI {
 	private void displayStoreProducts() {
 
 		System.out.println("#############Displaying the products in the store############");
-		System.out.println("Code ---- Name ---- Price");
+		System.out.println("Code ---- Name ---- Price/Unit ---- Discount");
 		products.stream().forEach(p -> System.out
-				.println(p.getProductId() + "---- " + p.getProductName() + " ---- " + p.getProductPrice()));
+				.println(p.getProductId() + "---- " + p.getProductName() + " ---- " + p.getProductPrice() + " ---- "+p.getRule().getRuleDescription()));
 
 		System.out.println("########################################");
 	}
@@ -181,7 +181,7 @@ public class StoreUI {
 	public void checkoutCart() {
 		List<Cart> carts = cartService.getFinalProductsInCart();
 		if(carts != null && !carts.isEmpty()) {
-			float totalAmount = checkoutService.calculatePrice(carts);
+			float totalAmount = checkoutService.calculateDiscountedPrice(carts);
 			Locale enGBLocale = new Locale.Builder().setLanguage("en").setRegion("GB").build();
 
 			String amountDisplay = CurrencyUtils.getCurrencyDisplay(enGBLocale, totalAmount);
