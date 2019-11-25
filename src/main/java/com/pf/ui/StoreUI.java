@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.pf.constants.DataConstants;
 import com.pf.domain.Cart;
+import com.pf.domain.Checkout;
 import com.pf.domain.ProductDescription;
 import com.pf.exceptions.InvalidInputException;
 import com.pf.service.CartService;
@@ -181,11 +182,21 @@ public class StoreUI {
 	public void checkoutCart() {
 		List<Cart> carts = cartService.getFinalProductsInCart();
 		if(carts != null && !carts.isEmpty()) {
-			float totalAmount = checkoutService.calculateDiscountedPrice(carts);
+			Checkout checkout = checkoutService.calculatePrice(carts);
+			float totalAmount = checkout.getActualPrice();
+			
 			Locale enGBLocale = new Locale.Builder().setLanguage("en").setRegion("GB").build();
-
 			String amountDisplay = CurrencyUtils.getCurrencyDisplay(enGBLocale, totalAmount);
+			
+			System.err.println("############# Actual total price for today = "+amountDisplay+" #########");
+			
+			totalAmount = checkout.getDiscountedPrice();
+			amountDisplay = CurrencyUtils.getCurrencyDisplay(enGBLocale, totalAmount);
+			System.err.println("############# Discounted total price for today = "+amountDisplay+" #########");
 
+			totalAmount = checkout.getActualPaid();
+			amountDisplay = CurrencyUtils.getCurrencyDisplay(enGBLocale, totalAmount);
+			
 			System.err.println("############ Total Paid today = " + amountDisplay
 					+ "  #################. Thank you see you soon #########");
 			System.exit(0);

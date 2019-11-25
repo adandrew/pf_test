@@ -38,7 +38,7 @@ public class CheckoutServiceTest {
 		carts.add(cart1);
 		carts.add(cart2);
 		
-		float total = checkoutService.calculatePrice(carts);
+		float total = checkoutService.calculateDiscountedPrice(carts);
 		assertEquals(3.30, total,0.002);
 	}
 
